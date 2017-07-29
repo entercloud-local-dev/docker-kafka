@@ -1,10 +1,10 @@
 # Entercloud engine messenger
 
+FROM java:openjdk-8-jre
 
 LABEL author="Andrew S Thompson Entercloud LLC andrewpsp"
 LABEL maintainer="admin@entercloud.info"
 
-FROM java:openjdk-8-jre
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.11
