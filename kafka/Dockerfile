@@ -1,4 +1,8 @@
-# Kafka and Zookeeper
+# Entercloud engine messenger
+
+
+LABEL author="Andrew S Thompson Entercloud LLC andrewpsp"
+LABEL maintainer="admin@entercloud.info"
 
 FROM java:openjdk-8-jre
 
@@ -7,9 +11,9 @@ ENV SCALA_VERSION 2.11
 ENV KAFKA_VERSION 0.10.1.0
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 
-# Install Kafka, Zookeeper and other needed things
+# Install Kafka, Zookeeper , supervisor, figlet
 RUN apt-get update && \
-    apt-get install -y zookeeper wget supervisor dnsutils && \
+    apt-get install -y figlet zookeeper wget supervisor dnsutils && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean && \
     wget -q http://apache.mirrors.spacedump.net/kafka/"$KAFKA_VERSION"/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz -O /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz && \
@@ -25,3 +29,4 @@ ADD supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
 EXPOSE 2181 9092
 
 CMD ["supervisord", "-n"]
+CMD ["figlet", "-c","'Entercloud Engine Messenger Interface'"]
